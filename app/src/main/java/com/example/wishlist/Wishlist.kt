@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -33,13 +34,16 @@ import com.example.wishlist.ui.theme.WishlistTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WishList(title: String, description:String,navigateToAddWishScreen: () -> Unit) {
+fun WishList(title: String, description: String, navigateToAddWishScreen: () -> Unit) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = Color(0xFFD72E5E),
-                titleContentColor = Color(0xFFFFFFFF)
-            ), title = { Text("WishList") })
+            AppBarView(title = "WishList", onBackClicked = {})
+
+
+//            TopAppBar(colors = TopAppBarDefaults.topAppBarColors(
+//                containerColor = Color(0xFFD72E5E),
+//                titleContentColor = Color(0xFFFFFFFF)
+//            ), title = { Text("WishList") })
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
@@ -52,9 +56,9 @@ fun WishList(title: String, description:String,navigateToAddWishScreen: () -> Un
         WishListData(
             modifier = Modifier
                 .padding(innerPadding)
-                .background(Color(0xFFDB4771)),
+                .background(colorResource(id = R.color.primaryColor)),
             title = title,
-            description=description
+            description = description
         )
     }
 }
@@ -74,9 +78,11 @@ fun WishListData(modifier: Modifier = Modifier, title: String, description: Stri
             .clip(RoundedCornerShape(6.dp))
             .background(Color.White)
     ) {
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp)) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+        ) {
             Text(text = title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
             Text(text = description, fontSize = 16.sp, color = Color.Gray)
         }
@@ -99,9 +105,11 @@ fun CustomBox(title: String, subtitle: String) {
             .clip(RoundedCornerShape(6.dp))
             .background(Color.White)
     ) {
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            .padding(10.dp)) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.dp)
+        ) {
             Text(text = title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
             Text(text = subtitle, fontSize = 16.sp, color = Color.Gray)
         }
