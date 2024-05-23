@@ -8,4 +8,10 @@ data class Wish(
     var description: String = ""
 ): Serializable
 
-data class WishList(var wishes: List<Wish>)
+object DummyWish {
+    val wishesList = listOf(
+        Wish(id = 1, title = "Wish 1", description = "Description for Wish 1"),
+        Wish(id = 2, title = "Wish 2", description = "Description for Wish 2"),
+        Wish(id = 3, title = "Wish 3", description = "Description for Wish 3")
+    )
+}

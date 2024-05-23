@@ -3,9 +3,13 @@ package com.example.wishlist
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -22,6 +26,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.wishlist.data.DummyWish
 import com.example.wishlist.data.Wish
 import java.io.Serializable
 
@@ -51,35 +56,28 @@ fun WishList(wish: Wish, navigateToAddWishScreen: () -> Unit) {
 
 @Composable
 fun WishListData(modifier: Modifier = Modifier, wish:Wish) {
-
-    val titlesAndSubtitles = listOf(
-        "Title 1" to "Subtitle 1",
-        "Title 2" to "Subtitle 2",
-        "Title 3" to "Subtitle 3"
-    )
-
-    Box(
-        modifier = Modifier
-            .padding(20.dp, 0.dp)
-            .clip(RoundedCornerShape(6.dp))
-            .background(Color.White)
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp)
-        ) {
-            Text(text = wish.title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
-            Text(text = wish.description, fontSize = 16.sp, color = Color.Gray)
-        }
-    }
-
-//    LazyColumn(modifier = modifier.fillMaxSize()) {
-//        items(titlesAndSubtitles) { item ->
-//            Spacer(modifier = Modifier.height(15.dp))
-//            CustomBox(item.first, item.second)
+//    Box(
+//        modifier = Modifier
+//            .padding(20.dp, 0.dp)
+//            .clip(RoundedCornerShape(6.dp))
+//            .background(Color.White)
+//    ) {
+//        Column(
+//            modifier = Modifier
+//                .fillMaxWidth()
+//                .padding(10.dp)
+//        ) {
+//            Text(text = wish.title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+//            Text(text = wish.description, fontSize = 16.sp, color = Color.Gray)
 //        }
 //    }
+
+    LazyColumn(modifier = modifier.fillMaxSize()) {
+        items(DummyWish.wishesList) { item ->
+            Spacer(modifier = Modifier.height(15.dp))
+            CustomBox(item)
+        }
+    }
 }
 
 

@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.wishlist.data.DummyWish
 import com.example.wishlist.data.Wish
 import com.example.wishlist.ui.theme.WishlistTheme
 
@@ -29,16 +30,12 @@ class MainActivity : ComponentActivity() {
 fun Navigation(){
     val navController = rememberNavController()
 
-    val wishesList = listOf(
-        Wish(id = 1, title = "Wish 1", description = "Description for Wish 1"),
-        Wish(id = 2, title = "Wish 2", description = "Description for Wish 2"),
-        Wish(id = 3, title = "Wish 3", description = "Description for Wish 3")
-    )
+
 
     fun getWishById(id: Int?): Wish? {
         // Your implementation to fetch the Wish object from your data source
         // For example, you might have a list of wishes or a database query here
-        return wishesList.find { it.id == id } // Replace with your actual data retrieval logic
+        return DummyWish.wishesList.find { it.id == id } // Replace with your actual data retrieval logic
     }
 
     NavHost(navController = navController, startDestination = "wishListScreen/{wishId}") {
