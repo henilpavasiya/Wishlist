@@ -14,12 +14,26 @@ import androidx.compose.ui.res.colorResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AppBarView(title: String, onBackClicked: @Composable () -> Unit) {
+fun AppBarView(title: String, onBackClick: () -> Unit) {
+    val navigationIcon : (@Composable ()-> Unit) = {
+        if(title.contains("WishList") ){
+            null
+        }
+        else{
+            IconButton(onClick = {onBackClick() }) {
+                Icon(
+                    Icons.Default.ArrowBack,
+                    contentDescription = "Back",
+                    tint = Color.White
+                )
+            }
+        }
+    }
+
+
     TopAppBar(colors = TopAppBarDefaults.topAppBarColors(
         containerColor = colorResource(id = R.color.primaryColor),
 //        containerColor = Color(0xFFD72E5E),
         titleContentColor = colorResource(id = R.color.white),
-    ), title = { Text(title) }, navigationIcon = {
-        onBackClicked()
-    })
+    ), title = { Text(title) }, navigationIcon = navigationIcon)
 }

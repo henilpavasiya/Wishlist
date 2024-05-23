@@ -36,13 +36,9 @@ fun AddWish(navigateToWishListScreen: (String, String) -> Unit) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            AppBarView(title = "Add Wish",onBackClicked={ IconButton(onClick = { navigateToWishListScreen("", "") }) {
-                Icon(
-                    Icons.Default.ArrowBack,
-                    contentDescription = "Back",
-                    tint = Color.White
-                )
-            }})
+            AppBarView(title = "Add Wish", onBackClick = {
+                navigateToWishListScreen("", "")
+            })
 
 //            TopAppBar(colors = TopAppBarDefaults.topAppBarColors(
 //                containerColor = Color(0xFFD72E5E),

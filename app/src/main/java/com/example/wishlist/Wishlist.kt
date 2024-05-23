@@ -37,13 +37,7 @@ import com.example.wishlist.ui.theme.WishlistTheme
 fun WishList(title: String, description: String, navigateToAddWishScreen: () -> Unit) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
-            AppBarView(title = "WishList", onBackClicked = {})
-
-
-//            TopAppBar(colors = TopAppBarDefaults.topAppBarColors(
-//                containerColor = Color(0xFFD72E5E),
-//                titleContentColor = Color(0xFFFFFFFF)
-//            ), title = { Text("WishList") })
+            AppBarView(title = "WishList", onBackClick = {})
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
