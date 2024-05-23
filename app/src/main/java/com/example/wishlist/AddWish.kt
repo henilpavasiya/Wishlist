@@ -28,31 +28,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import com.example.wishlist.data.Wish
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddWish(navigateToWishListScreen: (String, String) -> Unit) {
+fun AddWish(navigateToWishListScreen: (Wish) -> Unit) {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             AppBarView(title = "Add Wish", onBackClick = {
-                navigateToWishListScreen("", "")
+                navigateToWishListScreen(Wish(1, "", ""))
             })
-
-//            TopAppBar(colors = TopAppBarDefaults.topAppBarColors(
-//                containerColor = Color(0xFFD72E5E),
-//                titleContentColor = Color(0xFFFFFFFF)
-//            ), title = { Text("Add Wish") }, navigationIcon = {
-//                IconButton(onClick = { navigateToWishListScreen("", "") }) {
-//                    Icon(
-//                        Icons.Default.ArrowBack,
-//                        contentDescription = "Back",
-//                        tint = Color.White
-//                    )
-//                }
-//            })
-
         },
     ) { innerPadding ->
         AddWishTextField(modifier = Modifier.padding((innerPadding)), navigateToWishListScreen)
@@ -60,7 +47,7 @@ fun AddWish(navigateToWishListScreen: (String, String) -> Unit) {
 }
 
 @Composable
-fun AddWishTextField(modifier: Modifier, navigateToWishListScreen: (String, String) -> Unit) {
+fun AddWishTextField(modifier: Modifier, navigateToWishListScreen: (Wish) -> Unit) {
     var title = remember {
         mutableStateOf("")
     }
@@ -93,7 +80,7 @@ fun AddWishTextField(modifier: Modifier, navigateToWishListScreen: (String, Stri
                 .fillMaxWidth()
                 .padding(15.dp, 0.dp),
             onClick = {
-                navigateToWishListScreen(title.value, description.value)
+                navigateToWishListScreen(Wish(1,title.value,description.value))
             },
             colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.primaryColor),)
         ) {
