@@ -27,20 +27,29 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModel
+import androidx.navigation.NavController
 import com.example.wishlist.R
 import com.example.wishlist.data.DummyWish
 import com.example.wishlist.data.Wish
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WishList(wish: Wish, navigateToAddWishScreen: () -> Unit) {
+fun WishList(
+    viewModel: ViewModel,
+    navController: NavController,
+    wish: Wish,
+    //    navigateToAddWishScreen: () -> Unit
+) {
     Scaffold(modifier = Modifier.fillMaxSize(),
         topBar = {
             AppBarView(title = "WishList", onBackClick = {})
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
-                navigateToAddWishScreen()
+                navController.navigate(Screen.AddScreen.route)
+
+//                navigateToAddWishScreen()
             }, containerColor = Color(0xFF000000)) {
                 Icon(Icons.Default.Add, contentDescription = "Add", tint = Color(0xFFFFFFFF))
             }
@@ -50,33 +59,44 @@ fun WishList(wish: Wish, navigateToAddWishScreen: () -> Unit) {
             modifier = Modifier
                 .padding(innerPadding)
                 .background(colorResource(id = R.color.primaryColor)),
-            wish=wish,
-            navigateToAddWishScreen
+            wish = wish,
+            viewModel= viewModel,
+            navController = navController,
+//            navigateToAddWishScreen
         )
     }
 }
 
 @Composable
-fun WishListData(modifier: Modifier = Modifier, wish:Wish,navigateToAddWishScreen: () -> Unit) {
+fun WishListData(modifier: Modifier = Modifier, wish: Wish,  viewModel: ViewModel,
+                 navController: NavController,
+//                 navigateToAddWishScreen: () -> Unit
+) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(DummyWish.wishesList) { item ->
             Spacer(modifier = Modifier.height(15.dp))
-            CustomBox(item,navigateToAddWishScreen)
+            CustomBox(item,  viewModel=viewModel,
+                navController = navController,
+//                navigateToAddWishScreen
+            )
         }
     }
 }
 
 
 @Composable
-fun CustomBox(wish: Wish,navigateToAddWishScreen: () -> Unit) {
+fun CustomBox(wish: Wish,  viewModel: ViewModel,
+              navController: NavController,
+//              navigateToAddWishScreen: () -> Unit
+) {
     Box(
         modifier = Modifier
             .padding(20.dp, 0.dp)
             .clip(RoundedCornerShape(6.dp))
             .background(Color.White)
             .clickable {
-               wish.isEdited=true
-                navigateToAddWishScreen()
+//                wish.isEdited = true
+//                navigateToAddWishScreen()
             }
     ) {
         Column(
@@ -89,11 +109,3 @@ fun CustomBox(wish: Wish,navigateToAddWishScreen: () -> Unit) {
         }
     }
 }
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    WishlistTheme {
-//        WishListData()
-//    }
-//}

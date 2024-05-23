@@ -19,29 +19,43 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.example.wishlist.R
 import com.example.wishlist.data.Wish
 import com.example.wishlist.viewmodel.WishViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AddWish(navigateToWishListScreen: (Wish) -> Unit) {
+fun AddWish(
+    viewModel: ViewModel,
+    navController: NavController,
+//    navigateToWishListScreen: (Wish) -> Unit
+) {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             AppBarView(title = "Add Wish", onBackClick = {
-                navigateToWishListScreen(Wish(1, "", ""))
-            })
+//                navigateToWishListScreen(Wish(1, "", ""))
+            }){navController.navigateUp()}
         },
     ) { innerPadding ->
-        AddWishTextField(modifier = Modifier.padding((innerPadding)), navigateToWishListScreen)
+        AddWishTextField(modifier = Modifier.padding((innerPadding)),
+            viewModel= viewModel,
+            navController= navController,
+//            navigateToWishListScreen
+        )
     }
 }
 
 @Composable
-fun AddWishTextField(modifier: Modifier, navigateToWishListScreen: (Wish) -> Unit) {
+fun AddWishTextField(modifier: Modifier,
+                     viewModel: ViewModel,
+                     navController: NavController,
+//                     navigateToWishListScreen: (Wish) -> Unit
+) {
     val viewmodel: WishViewModel = viewModel()
 
     Column(modifier = modifier) {
@@ -69,28 +83,25 @@ fun AddWishTextField(modifier: Modifier, navigateToWishListScreen: (Wish) -> Uni
             onValueChanged = {
                 viewmodel.onWishDescriptionChange(it)
             })
-
-//        OutlinedTextField(value = description.value, onValueChange = {
-//            description.value = it
-//        }, label = {
-//            Text("Description")
-//        }, modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(15.dp, 0.dp)
-//        )
         Spacer(modifier = Modifier.padding(10.dp))
         Button(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(15.dp, 0.dp),
             onClick = {
-                navigateToWishListScreen(
-                    Wish(
-                        1,
-                        viewmodel.wishTitle.value,
-                        viewmodel.wishDescription.value
-                    )
-                )
+
+                if (viewmodel.wishTitle.value.isNotEmpty() && viewmodel.wishDescription.value.isNotEmpty()) {
+                    //TODO UpdateWish
+                } else {
+                    //TODO AddWish
+                }
+//                navigateToWishListScreen(
+//                    Wish(
+//                        1,
+//                        viewmodel.wishTitle.value,
+//                        viewmodel.wishDescription.value
+//                    )
+//                )
             },
             colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.primaryColor))
         ) {

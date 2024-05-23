@@ -13,6 +13,7 @@ import com.example.wishlist.data.DummyWish
 import com.example.wishlist.data.Wish
 import com.example.wishlist.ui.theme.WishlistTheme
 import com.example.wishlist.view.AddWish
+import com.example.wishlist.view.Navigation
 import com.example.wishlist.view.WishList
 
 class MainActivity : ComponentActivity() {
@@ -29,10 +30,8 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Navigation(){
+fun Navigation2(){
     val navController = rememberNavController()
-
-
 
     fun getWishById(id: Int?): Wish? {
         // Your implementation to fetch the Wish object from your data source
