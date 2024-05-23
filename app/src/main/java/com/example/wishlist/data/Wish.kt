@@ -5,7 +5,8 @@ import java.io.Serializable
 data class Wish(
     var id: Int = 1,
     var title: String = "",
-    var description: String = ""
+    var description: String = "",
+    var isEdited: Boolean = false
 ): Serializable
 
 object DummyWish {

@@ -12,6 +12,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.wishlist.data.DummyWish
 import com.example.wishlist.data.Wish
 import com.example.wishlist.ui.theme.WishlistTheme
+import com.example.wishlist.view.AddWish
+import com.example.wishlist.view.WishList
 
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)

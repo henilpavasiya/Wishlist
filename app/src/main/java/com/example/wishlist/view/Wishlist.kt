@@ -1,6 +1,7 @@
-package com.example.wishlist
+package com.example.wishlist.view
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -26,9 +27,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.wishlist.R
 import com.example.wishlist.data.DummyWish
 import com.example.wishlist.data.Wish
-import java.io.Serializable
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,45 +50,34 @@ fun WishList(wish: Wish, navigateToAddWishScreen: () -> Unit) {
             modifier = Modifier
                 .padding(innerPadding)
                 .background(colorResource(id = R.color.primaryColor)),
-            wish=wish
+            wish=wish,
+            navigateToAddWishScreen
         )
     }
 }
 
 @Composable
-fun WishListData(modifier: Modifier = Modifier, wish:Wish) {
-//    Box(
-//        modifier = Modifier
-//            .padding(20.dp, 0.dp)
-//            .clip(RoundedCornerShape(6.dp))
-//            .background(Color.White)
-//    ) {
-//        Column(
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(10.dp)
-//        ) {
-//            Text(text = wish.title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
-//            Text(text = wish.description, fontSize = 16.sp, color = Color.Gray)
-//        }
-//    }
-
+fun WishListData(modifier: Modifier = Modifier, wish:Wish,navigateToAddWishScreen: () -> Unit) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(DummyWish.wishesList) { item ->
             Spacer(modifier = Modifier.height(15.dp))
-            CustomBox(item)
+            CustomBox(item,navigateToAddWishScreen)
         }
     }
 }
 
 
 @Composable
-fun CustomBox(wish: Wish) {
+fun CustomBox(wish: Wish,navigateToAddWishScreen: () -> Unit) {
     Box(
         modifier = Modifier
             .padding(20.dp, 0.dp)
             .clip(RoundedCornerShape(6.dp))
             .background(Color.White)
+            .clickable {
+               wish.isEdited=true
+                navigateToAddWishScreen()
+            }
     ) {
         Column(
             modifier = Modifier
