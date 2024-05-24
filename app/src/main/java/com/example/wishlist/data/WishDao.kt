@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class WishDao {
@@ -18,8 +19,8 @@ abstract class WishDao {
     abstract suspend fun deleteWish(wishEntity: Wish)
 
     @Query("Select * from `wish-table`")
-    abstract fun getAllWishes(): List<Wish>
+    abstract fun getAllWishes(): Flow<List<Wish>>
 
     @Query("Select * from `wish-table` where id=:id")
-    abstract fun getWishById(id: Long): Wish
+    abstract fun getWishById(id: Long): Flow<Wish>
 }
