@@ -73,7 +73,8 @@ fun WishListData(modifier: Modifier = Modifier,  viewModel: ViewModel,
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(DummyWish.wishesList) { item ->
             Spacer(modifier = Modifier.height(15.dp))
-            CustomBox(item
+            CustomBox(item,
+                navController = navController,
 //                navigateToAddWishScreen
             )
         }
@@ -83,6 +84,7 @@ fun WishListData(modifier: Modifier = Modifier,  viewModel: ViewModel,
 
 @Composable
 fun CustomBox(wish: Wish,
+              navController: NavController,
 //              navigateToAddWishScreen: () -> Unit
 ) {
     Box(
@@ -91,8 +93,10 @@ fun CustomBox(wish: Wish,
             .clip(RoundedCornerShape(6.dp))
             .background(Color.White)
             .clickable {
-//                wish.isEdited = true
+                navController.navigate(Screen.AddScreen.route)
 //                navigateToAddWishScreen()
+//                wish.isEdited = true
+
             }
     ) {
         Column(

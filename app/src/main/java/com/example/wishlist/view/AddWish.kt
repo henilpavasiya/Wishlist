@@ -72,14 +72,6 @@ fun AddWishTextField(
                 viewmodel.onWishTitleChange(it)
             })
 
-//        OutlinedTextField(value = title.value, onValueChange = {
-//            title.value = it
-//        }, label = {
-//            Text("Title")
-//        }, modifier = Modifier
-//            .fillMaxWidth()
-//            .padding(15.dp, 0.dp)
-//        )
         Spacer(modifier = Modifier.padding(10.dp))
 
         CustomOutlinedTextField(
