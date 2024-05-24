@@ -29,48 +29,10 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-//@Composable
-//fun Navigation2(){
-//    val navController = rememberNavController()
-//
-//    fun getWishById(id: Int?): Wish? {
-//        // Your implementation to fetch the Wish object from your data source
-//        // For example, you might have a list of wishes or a database query here
-//        return DummyWish.wishesList.find { it.id == id } // Replace with your actual data retrieval logic
-//    }
-//
-//    NavHost(navController = navController, startDestination = "wishListScreen/{wishId}") {
-//        composable("wishListScreen/{wishId}") { backStackEntry ->
-//            val wishId = backStackEntry.arguments?.getInt("wishId") ?:1
-//            // Retrieve the Wish object using the ID
-//            val wish = getWishById(wishId) // This function should fetch the Wish object based on the ID
-//            if (wish != null) {
-//                WishList(wish) {
-//                    navController.navigate("secondScreen")
-//                }
-//            } else {
-//                // Handle the case where the wish is null
-//                // You might want to show an error message or navigate to an error screen
-//            }
-//        }
-//        composable("secondScreen") {
-//            AddWish { wish ->
-//                navController.navigate("wishListScreen/${wish.id}") // Use wish.id to navigate
-//            }
-//        }
-//    }
-//
-////    NavHost(navController = navController, startDestination = "secondScreen") {
-////        composable("wishListScreen/{wish}"){
-////            val wish :Wish= it.arguments?.getSerializable("wish") as Wish
-////            WishList(wish){
-////                navController.navigate("secondScreen")
-////            }
-////        }
-////        composable("secondScreen"){
-////            AddWish{wish ->
-////                navController.navigate("wishListScreen/$wish")
-////            }
-////        }
-////    }
-//}
+//Steps to implement Room database:
+// 1. Create a data entity class with table name
+// 2. Create a DAO class/interface
+// 3. Create a database class with database name
+// 4. Create a repository class to access the DAO
+// 5. Create a ViewModel class to access the repository
+// 6. Create a UI class to access the ViewModel
