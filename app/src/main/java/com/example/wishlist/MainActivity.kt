@@ -29,48 +29,48 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun Navigation2(){
-    val navController = rememberNavController()
-
-    fun getWishById(id: Int?): Wish? {
-        // Your implementation to fetch the Wish object from your data source
-        // For example, you might have a list of wishes or a database query here
-        return DummyWish.wishesList.find { it.id == id } // Replace with your actual data retrieval logic
-    }
-
-    NavHost(navController = navController, startDestination = "wishListScreen/{wishId}") {
-        composable("wishListScreen/{wishId}") { backStackEntry ->
-            val wishId = backStackEntry.arguments?.getInt("wishId") ?:1
-            // Retrieve the Wish object using the ID
-            val wish = getWishById(wishId) // This function should fetch the Wish object based on the ID
-            if (wish != null) {
-                WishList(wish) {
-                    navController.navigate("secondScreen")
-                }
-            } else {
-                // Handle the case where the wish is null
-                // You might want to show an error message or navigate to an error screen
-            }
-        }
-        composable("secondScreen") {
-            AddWish { wish ->
-                navController.navigate("wishListScreen/${wish.id}") // Use wish.id to navigate
-            }
-        }
-    }
-
-//    NavHost(navController = navController, startDestination = "secondScreen") {
-//        composable("wishListScreen/{wish}"){
-//            val wish :Wish= it.arguments?.getSerializable("wish") as Wish
-//            WishList(wish){
-//                navController.navigate("secondScreen")
+//@Composable
+//fun Navigation2(){
+//    val navController = rememberNavController()
+//
+//    fun getWishById(id: Int?): Wish? {
+//        // Your implementation to fetch the Wish object from your data source
+//        // For example, you might have a list of wishes or a database query here
+//        return DummyWish.wishesList.find { it.id == id } // Replace with your actual data retrieval logic
+//    }
+//
+//    NavHost(navController = navController, startDestination = "wishListScreen/{wishId}") {
+//        composable("wishListScreen/{wishId}") { backStackEntry ->
+//            val wishId = backStackEntry.arguments?.getInt("wishId") ?:1
+//            // Retrieve the Wish object using the ID
+//            val wish = getWishById(wishId) // This function should fetch the Wish object based on the ID
+//            if (wish != null) {
+//                WishList(wish) {
+//                    navController.navigate("secondScreen")
+//                }
+//            } else {
+//                // Handle the case where the wish is null
+//                // You might want to show an error message or navigate to an error screen
 //            }
 //        }
-//        composable("secondScreen"){
-//            AddWish{wish ->
-//                navController.navigate("wishListScreen/$wish")
+//        composable("secondScreen") {
+//            AddWish { wish ->
+//                navController.navigate("wishListScreen/${wish.id}") // Use wish.id to navigate
 //            }
 //        }
 //    }
-}
+//
+////    NavHost(navController = navController, startDestination = "secondScreen") {
+////        composable("wishListScreen/{wish}"){
+////            val wish :Wish= it.arguments?.getSerializable("wish") as Wish
+////            WishList(wish){
+////                navController.navigate("secondScreen")
+////            }
+////        }
+////        composable("secondScreen"){
+////            AddWish{wish ->
+////                navController.navigate("wishListScreen/$wish")
+////            }
+////        }
+////    }
+//}

@@ -37,8 +37,7 @@ import com.example.wishlist.data.Wish
 @Composable
 fun WishList(
     viewModel: ViewModel,
-    navController: NavController,
-    wish: Wish,
+    navController: NavController
     //    navigateToAddWishScreen: () -> Unit
 ) {
     Scaffold(modifier = Modifier.fillMaxSize(),
@@ -59,7 +58,6 @@ fun WishList(
             modifier = Modifier
                 .padding(innerPadding)
                 .background(colorResource(id = R.color.primaryColor)),
-            wish = wish,
             viewModel= viewModel,
             navController = navController,
 //            navigateToAddWishScreen
@@ -68,15 +66,14 @@ fun WishList(
 }
 
 @Composable
-fun WishListData(modifier: Modifier = Modifier, wish: Wish,  viewModel: ViewModel,
+fun WishListData(modifier: Modifier = Modifier,  viewModel: ViewModel,
                  navController: NavController,
 //                 navigateToAddWishScreen: () -> Unit
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(DummyWish.wishesList) { item ->
             Spacer(modifier = Modifier.height(15.dp))
-            CustomBox(item,  viewModel=viewModel,
-                navController = navController,
+            CustomBox(item
 //                navigateToAddWishScreen
             )
         }
@@ -85,8 +82,7 @@ fun WishListData(modifier: Modifier = Modifier, wish: Wish,  viewModel: ViewMode
 
 
 @Composable
-fun CustomBox(wish: Wish,  viewModel: ViewModel,
-              navController: NavController,
+fun CustomBox(wish: Wish,
 //              navigateToAddWishScreen: () -> Unit
 ) {
     Box(

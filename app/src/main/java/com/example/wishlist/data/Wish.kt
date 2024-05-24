@@ -6,8 +6,8 @@ data class Wish(
     var id: Int = 1,
     var title: String = "",
     var description: String = "",
-    var isEdited: Boolean = false
-): Serializable
+//    var isEdited: Boolean = false
+)
 
 object DummyWish {
     val wishesList = listOf(

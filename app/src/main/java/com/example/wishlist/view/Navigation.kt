@@ -13,14 +13,14 @@ import com.example.wishlist.viewmodel.WishViewModel
 fun Navigation(
     viewModel: WishViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
     navController: NavHostController = rememberNavController(),
-    wish: Wish
+    wish: Wish = Wish()
 ) {
     NavHost(navController = navController, startDestination = Screen.HomeScreen.route) {
         composable(route = Screen.HomeScreen.route) {
-            WishList(viewModel,navController,wish)
+            WishList(viewModel, navController)
         }
-        composable(route=Screen.AddScreen.route){
-            AddWish(viewModel,navController)
+        composable(route = Screen.AddScreen.route) {
+            AddWish(0L,viewModel, navController)
         }
     }
 }

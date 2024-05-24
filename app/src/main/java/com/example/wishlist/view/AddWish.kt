@@ -29,31 +29,36 @@ import com.example.wishlist.viewmodel.WishViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AddWish(
+    id: Long,
     viewModel: ViewModel,
     navController: NavController,
 //    navigateToWishListScreen: (Wish) -> Unit
 ) {
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
+//        modifier = Modifier.fillMaxSize(),
         topBar = {
-            AppBarView(title = "Add Wish", onBackClick = {
-//                navigateToWishListScreen(Wish(1, "", ""))
-            }){navController.navigateUp()}
+            AppBarView(title = if (id != 0L) "Update Wish" else "Add Wish") {
+                navController.navigateUp()
+            }
         },
     ) { innerPadding ->
-        AddWishTextField(modifier = Modifier.padding((innerPadding)),
-            viewModel= viewModel,
-            navController= navController,
+        AddWishTextField(
+            modifier = Modifier.padding((innerPadding)),
+            id = id,
+            viewModel = viewModel,
+            navController = navController,
 //            navigateToWishListScreen
         )
     }
 }
 
 @Composable
-fun AddWishTextField(modifier: Modifier,
-                     viewModel: ViewModel,
-                     navController: NavController,
+fun AddWishTextField(
+    modifier: Modifier,
+    id: Long,
+    viewModel: ViewModel,
+    navController: NavController,
 //                     navigateToWishListScreen: (Wish) -> Unit
 ) {
     val viewmodel: WishViewModel = viewModel()
@@ -105,7 +110,11 @@ fun AddWishTextField(modifier: Modifier,
             },
             colors = ButtonDefaults.buttonColors(containerColor = colorResource(id = R.color.primaryColor))
         ) {
-            Text("Add Wish", color = Color.White)
+            if (id != 0L) Text("Update Wish", color = Color.White) else Text(
+                "Add Wish",
+                color = Color.White
+            )
+
         }
     }
 }
