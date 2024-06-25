@@ -58,7 +58,7 @@ fun WishList(
             modifier = Modifier
                 .padding(innerPadding)
                 .background(colorResource(id = R.color.primaryColor)),
-            viewModel= viewModel,
+            viewModel = viewModel,
             navController = navController,
 //            navigateToAddWishScreen
         )
@@ -66,14 +66,16 @@ fun WishList(
 }
 
 @Composable
-fun WishListData(modifier: Modifier = Modifier,  viewModel: ViewModel,
-                 navController: NavController,
+fun WishListData(
+    modifier: Modifier = Modifier, viewModel: ViewModel,
+    navController: NavController,
 //                 navigateToAddWishScreen: () -> Unit
 ) {
     LazyColumn(modifier = modifier.fillMaxSize()) {
         items(DummyWish.wishesList) { item ->
             Spacer(modifier = Modifier.height(15.dp))
-            CustomBox(item,
+            CustomBox(
+                item,
                 navController = navController,
 //                navigateToAddWishScreen
             )
@@ -83,8 +85,9 @@ fun WishListData(modifier: Modifier = Modifier,  viewModel: ViewModel,
 
 
 @Composable
-fun CustomBox(wish: Wish,
-              navController: NavController,
+fun CustomBox(
+    wish: Wish,
+    navController: NavController,
 //              navigateToAddWishScreen: () -> Unit
 ) {
     Box(

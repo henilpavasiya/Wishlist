@@ -20,7 +20,7 @@ fun Navigation(
             WishList(viewModel, navController)
         }
         composable(route = Screen.AddScreen.route) {
-            AddWish(0L,viewModel, navController)
+            AddWish(0L, viewModel, navController)
         }
     }
 }

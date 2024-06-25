@@ -4,13 +4,15 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.wishlist.Graph
 import com.example.wishlist.data.Wish
 import com.example.wishlist.data.WishRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
-class WishViewModel(private val wishRepository: WishRepository) : ViewModel() {
+class WishViewModel(private val wishRepository: WishRepository = Graph.wishRepository) :
+    ViewModel() {
     var wishTitle = mutableStateOf("")
     var wishDescription = mutableStateOf("")
 
@@ -48,6 +50,6 @@ class WishViewModel(private val wishRepository: WishRepository) : ViewModel() {
         }
     }
 
-    fun getWishesById(id:Long): Flow<Wish> = wishRepository.getWishesById(id)
+    fun getWishesById(id: Long): Flow<Wish> = wishRepository.getWishesById(id)
 
 }
